@@ -11,11 +11,11 @@ export const FAQSection: React.FC = () => {
   }
 
   return (
-    <section id="faq" className="py-24 bg-cream-50 relative">
+    <section id="faq" className="py-12 sm:py-16 lg:py-20 bg-cream-50 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gold/30 shadow-xs mb-4">
             <HelpCircle className="w-3.5 h-3.5 text-gold" />
             <span className="text-xs uppercase tracking-widest font-semibold text-plum">
@@ -77,11 +77,11 @@ export const FAQSection: React.FC = () => {
         </div>
 
         {/* Bottom Banner FAQ */}
-        <div className="mt-14 p-8 rounded-3xl bg-gradient-to-r from-plum to-plum-dark text-white text-center shadow-luxury border border-gold/30">
-          <h3 className="font-serif text-2xl font-bold text-gold-light mb-2">
+        <div className="mt-8 sm:mt-12 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-plum to-plum-dark text-white text-center shadow-luxury border border-gold/30">
+          <h3 className="font-serif text-xl sm:text-2xl font-bold text-gold-light mb-2">
             Ainda tem dúvidas? Fale conosco pelo WhatsApp
           </h3>
-          <p className="text-xs sm:text-sm text-cream-200 max-w-lg mx-auto mb-6">
+          <p className="text-xs sm:text-sm text-cream-200 max-w-lg mx-auto mb-5 sm:mb-6 leading-relaxed">
             Nossa equipe de recepção e os fisioterapeutas estão prontos para orientar a escolha do melhor procedimento para você.
           </p>
 

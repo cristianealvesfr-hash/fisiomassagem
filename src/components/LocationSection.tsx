@@ -4,11 +4,11 @@ import { getWhatsAppUrl, GOOGLE_MAPS_REVIEW_URL } from '@/lib/utils'
 
 export const LocationSection: React.FC = () => {
   return (
-    <section id="localizacao" className="py-24 bg-white relative">
+    <section id="localizacao" className="py-12 sm:py-16 lg:py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cream-100 border border-gold/30 text-plum shadow-xs mb-4">
             <MapPin className="w-3.5 h-3.5 text-gold" />
             <span className="text-xs uppercase tracking-widest font-semibold">
