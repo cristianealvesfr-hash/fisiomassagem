@@ -1,95 +1,144 @@
 import React from 'react'
-import { CheckCircle2, ArrowRight } from 'lucide-react'
-import { INTEGRATIVE_PROTOCOLS } from '@/data/content'
-import { getWhatsAppUrl } from '@/lib/utils'
+import { ChevronRight, Heart, Leaf, Sun, Flower2 } from 'lucide-react'
 
 export const IntegrativeProtocols: React.FC = () => {
-  const protocolImages: Record<string, string> = {
-    'estresse-ansiedade': 'https://images.unsplash.com/photo-1512290900672-1f416d8a7a97?auto=format&fit=crop&w=600&q=80',
-    'sono-qualidade': 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80',
-    'energia-equilibrio': 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80',
-    'mais-leve-saude': 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=600&q=80'
-  }
+  const protocols = [
+    {
+      id: 1,
+      image: '/client-assets/protocolo-top-1.jpg',
+      title: 'ESTRESSE & ANSIEDADE',
+      desc: 'Técnicas integrativas para acalmar a mente, aliviar tensões e recuperar o equilíbrio emocional.',
+      url: 'https://loja.fisiomassagem.com.br/'
+    },
+    {
+      id: 2,
+      image: '/client-assets/protocolo-top-2.jpg',
+      title: 'RELAXAMENTO & SONO DE QUALIDADE',
+      desc: 'Protocolos que favorecem o relaxamento profundo e ajudam você a dormir melhor.',
+      url: 'https://loja.fisiomassagem.com.br/'
+    },
+    {
+      id: 3,
+      image: '/client-assets/protocolo-top-3.jpg',
+      title: 'ENERGIA EQUILÍBRIO CORPORAL & EMOCIONAL',
+      desc: 'Integração de terapias para harmonizar corpo e mente, aumentar sua energia e vitalidade.',
+      url: 'https://loja.fisiomassagem.com.br/'
+    },
+    {
+      id: 4,
+      image: '/client-assets/protocolo-top-4.jpg',
+      title: 'MAIS LEVE, MAIS SAÚDE, MAIS BELA',
+      desc: 'Protocolos que reduzem inchaço, melhoram o contorno corporal e realçam sua beleza natural, com mais saúde e bem-estar.',
+      url: 'https://loja.fisiomassagem.com.br/'
+    }
+  ]
 
   return (
-    <section id="protocolos" className="py-20 bg-cream-100 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="protocolos" className="py-12 sm:py-16 bg-[#FAF8F5] relative overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase tracking-widest font-bold text-gold-dark bg-white px-4 py-1.5 rounded-full border border-gold/30 shadow-xs">
-            Fisioterapia & Terapias Holísticas
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-plum mt-4 mb-4">
-            Protocolos Terapêuticos <span className="italic">Integrativos</span>
-          </h2>
-          <p className="text-charcoal-muted text-base sm:text-lg">
-            Abordagem clínica e humanizada que une a precisão da reabilitação física ao equilíbrio das terapias de bem-estar.
-          </p>
+        {/* Header da Seção com Selo Oficial à Direita */}
+        <div className="relative mb-10 text-center sm:text-left pr-0 sm:pr-24">
+          {/* Selo Redondo no Topo Direito */}
+          <div className="hidden sm:block absolute top-0 right-0 w-24 h-auto">
+            <img 
+              src="/client-assets/protocolo-seal.jpg" 
+              alt="Saúde, Beleza, Bem-Estar em Equilíbrio" 
+              className="w-full h-auto object-contain"
+            />
+          </div>
+
+          <div className="text-center">
+            <div className="text-[11px] sm:text-xs font-bold tracking-[0.25em] text-[#A87B2C] uppercase mb-2">
+              CORPO • MENTE • EQUILÍBRIO • BEM-ESTAR
+            </div>
+            
+            <h2 className="text-2xl sm:text-3xl font-serif text-[#4A1D6A] mb-1 font-bold">
+              PROTOCOLOS TERAPÊUTICOS
+            </h2>
+            <div className="text-lg sm:text-xl font-serif tracking-widest text-[#A87B2C] mb-3">
+              INTEGRATIVOS
+            </div>
+
+            <p className="text-xs sm:text-sm text-stone-700 font-medium mb-3">
+              Cuidado completo para uma vida mais saudável e equilibrada
+            </p>
+
+            <div className="w-16 h-px bg-[#A87B2C]/40 mx-auto mb-3" />
+
+            <p className="text-xs text-stone-600 max-w-md mx-auto leading-relaxed">
+              Nossos protocolos combinam técnicas, terapias e recursos naturais para promover saúde, bem-estar e qualidade de vida.
+            </p>
+          </div>
         </div>
 
-        {/* 2x2 Grid com fotos reais e acabamento nobre */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {INTEGRATIVE_PROTOCOLS.map((protocol) => (
-            <div
-              key={protocol.id}
-              className="bg-white rounded-3xl overflow-hidden border border-gold/25 shadow-soft hover:shadow-luxury hover:border-gold transition-all duration-300 flex flex-col justify-between group"
+        {/* Grid 2x2 dos 4 Cards Oficiais */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+          {protocols.map((proto) => (
+            <div 
+              key={proto.id}
+              className="bg-white rounded-3xl overflow-hidden shadow-sm border border-[#EFE8DD] flex flex-col justify-between transition-all hover:shadow-md"
             >
-              {/* Card Photo Header */}
-              <div className="relative h-44 w-full overflow-hidden bg-cream-200">
-                <img
-                  src={protocolImages[protocol.id]}
-                  alt={protocol.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              <div>
+                <img 
+                  src={proto.image} 
+                  alt={proto.title} 
+                  className="w-full h-auto object-cover select-none"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-plum-950/85 via-plum-900/35 to-transparent" />
-                
-                {/* Protocol Tag */}
-                <div className="absolute top-4 left-4">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-gold-light bg-black/40 backdrop-blur-md px-3.5 py-1 rounded-full border border-gold/30 shadow-sm">
-                    {protocol.tag}
-                  </span>
-                </div>
 
-                <div className="absolute bottom-3 left-4 right-4">
-                  <h3 className="font-serif text-2xl font-bold text-white tracking-wide drop-shadow-sm">
-                    {protocol.title}
+                <div className="p-5 pt-3">
+                  <h3 className="text-sm sm:text-base font-bold font-serif text-[#4A1D6A] mb-2 leading-snug">
+                    {proto.title}
                   </h3>
+                  <p className="text-xs text-stone-600 leading-relaxed font-normal">
+                    {proto.desc}
+                  </p>
                 </div>
               </div>
 
-              <div className="p-7 flex-1 flex flex-col justify-between">
-                <div>
-                  <p className="text-charcoal-muted text-sm sm:text-base leading-relaxed mb-6">
-                    {protocol.description}
-                  </p>
-
-                  {/* Benefits List */}
-                  <div className="space-y-2.5 mb-6">
-                    {protocol.benefits.map((benefit, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-charcoal">
-                        <CheckCircle2 className="w-4 h-4 text-gold shrink-0 mt-0.5" />
-                        <span>{benefit}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action */}
-                <div className="pt-4 border-t border-cream-200">
-                  <a
-                    href={getWhatsAppUrl(`Olá! Gostaria de saber mais e agendar o protocolo integrativo de ${protocol.title} na Fisiomassagem Studio Icaraí.`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-bold text-plum hover:text-gold-dark group-hover:translate-x-1 transition-all"
-                  >
-                    <span>Consultar Protocolo Clínico</span>
-                    <ArrowRight className="w-4 h-4 text-gold" />
-                  </a>
-                </div>
+              <div className="px-5 pb-5 pt-1 flex justify-end">
+                <a
+                  href={proto.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full border border-[#D4AF37] text-[#8C6D28] flex items-center justify-center hover:bg-[#8C6D28] hover:text-white transition-colors"
+                  aria-label={`Ver mais sobre ${proto.title}`}
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </a>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Frase Cursiva Embaixo */}
+        <div className="text-center mb-8">
+          <p className="text-xl sm:text-2xl font-serif italic text-[#4A1D6A]">
+            Uma vida mais leve e saudável começa aqui.
+          </p>
+        </div>
+
+        {/* 4 Ícones de Rodapé da Seção */}
+        <div className="grid grid-cols-4 gap-2 text-center pt-4 border-t border-[#EFE8DD]">
+          <div className="flex flex-col items-center">
+            <Flower2 className="w-5 h-5 text-[#4A1D6A] mb-1" />
+            <span className="text-[10px] sm:text-xs font-bold text-[#4A1D6A] tracking-wider uppercase">SAÚDE</span>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <Heart className="w-5 h-5 text-[#4A1D6A] mb-1" />
+            <span className="text-[10px] sm:text-xs font-bold text-[#4A1D6A] tracking-wider uppercase">BELEZA</span>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <Leaf className="w-5 h-5 text-[#4A1D6A] mb-1" />
+            <span className="text-[10px] sm:text-xs font-bold text-[#4A1D6A] tracking-wider uppercase">BEM-ESTAR</span>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <Sun className="w-5 h-5 text-[#4A1D6A] mb-1" />
+            <span className="text-[10px] sm:text-xs font-bold text-[#4A1D6A] tracking-wider uppercase">QUALIDADE DE VIDA</span>
+          </div>
         </div>
 
       </div>

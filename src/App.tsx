@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { Navbar } from './components/Navbar'
 import { Hero } from './components/Hero'
-import { ExperiencesHub } from './components/ExperiencesHub'
-import { DaySpaSection } from './components/DaySpaSection'
-import { IntegrativeProtocols } from './components/IntegrativeProtocols'
-import { GiftCardSection } from './components/GiftCardSection'
-import { ServicesShowcase } from './components/ServicesShowcase'
-import { AudienceTabs } from './components/AudienceTabs'
-import { FounderSection } from './components/FounderSection'
 import { ReviewsSection } from './components/ReviewsSection'
+import { ServicesShowcase } from './components/ServicesShowcase'
+import { DaySpaSection } from './components/DaySpaSection'
+import { GiftCardSection } from './components/GiftCardSection'
+import { ExperiencesHub } from './components/ExperiencesHub'
+import { IntegrativeProtocols } from './components/IntegrativeProtocols'
 import { FAQSection } from './components/FAQSection'
 import { LocationSection } from './components/LocationSection'
 import { Footer } from './components/Footer'
@@ -34,66 +32,60 @@ export function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-cream-100 flex flex-col font-sans text-charcoal">
-      {/* Fixed Header with Glassmorphism */}
+    <div className="min-h-screen bg-[#FAF8F5] flex flex-col font-sans text-stone-800 antialiased selection:bg-[#4A1D6A] selection:text-white">
+      {/* 1. Header Oficial com Logo Centralizada, Menu e WhatsApp */}
       <Navbar onOpenBookingModal={() => setIsBookingModalOpen(true)} />
 
-      {/* Main Single Page Application Content */}
+      {/* Sequência Exata Solicitada pelo Cliente */}
       <main className="flex-1">
-        {/* 1. Hero Section */}
+        {/* Seção 01: Topo / Hero / 4 Categorias / Selo Google */}
         <Hero onOpenBookingModal={() => setIsBookingModalOpen(true)} />
 
-        {/* 2. Escolha sua Experiência (Card Hub) */}
-        <ExperiencesHub />
-
-        {/* 3. Coleção Day Spa Exclusivo */}
-        <DaySpaSection />
-
-        {/* 4. Protocolos Terapêuticos Integrativos */}
-        <IntegrativeProtocols />
-
-        {/* 5. Seção Vale Presente (Vinho Imperial) */}
-        <GiftCardSection />
-
-        {/* 6. Vitrine de Tratamentos & Vale Presente (Com os 4 Banners Oficiais) */}
-        <ServicesShowcase />
-
-        {/* 7. Experiências Personalizadas por Público (Tabs) */}
-        <AudienceTabs />
-
-        {/* 7. O Fundador & A Tradição (Ricardo Pimentel) */}
-        <FounderSection />
-
-        {/* 8. Prova Social & Google Reviews */}
+        {/* Seção 02: Experiência Real (Depoimentos Google + Toalha Oficial) */}
         <ReviewsSection />
 
-        {/* 9. Perguntas & Respostas Frequentes (FAQ) */}
+        {/* Seção 03: Destaques do Mês (Escolhas Especiais para Você) */}
+        <ServicesShowcase />
+
+        {/* Seção 04: Day Spa (4 Banners Oficiais) */}
+        <DaySpaSection />
+
+        {/* Seção 05: Vale Presente Oficial (Vinho & Dourado) */}
+        <GiftCardSection />
+
+        {/* Seção 06: Escolha sua Experiência (Foto da Sala + 4 Cards) */}
+        <ExperiencesHub />
+
+        {/* Seção 07: Protocolos Terapêuticos Integrativos */}
+        <IntegrativeProtocols />
+
+        {/* Seção 08: Perguntas & Respostas (FAQ Oficial + Banner WhatsApp) */}
         <FAQSection />
 
-        {/* 10. Localização, Mapa Google & Contato */}
+        {/* Localização & Mapa Icaraí Niterói */}
         <LocationSection />
       </main>
 
-      {/* Footer */}
+      {/* Rodapé Oficial Fisiomassagem Studio */}
       <Footer />
 
-      {/* Interactive Floating WhatsApp Button */}
+      {/* Botão Flutuante do WhatsApp */}
       <FloatingWhatsApp />
 
-      {/* Interactive Booking Modal */}
+      {/* Modal de Agendamento Interativo */}
       <BookingModal 
         isOpen={isBookingModalOpen} 
         onClose={() => setIsBookingModalOpen(false)} 
       />
 
-      {/* Interactive Terms & Privacy Legal Modal */}
+      {/* Modal de Termos de Uso e Privacidade (LGPD) */}
       <LegalModal
         isOpen={legalModalState.isOpen}
         initialTab={legalModalState.tab}
         onClose={() => setLegalModalState(prev => ({ ...prev, isOpen: false }))}
       />
 
-      {/* LGPD Cookie Consent Banner for every new user */}
+      {/* Banner LGPD */}
       <CookieConsentBanner />
     </div>
   )

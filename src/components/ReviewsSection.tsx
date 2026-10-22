@@ -1,197 +1,164 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Star, ChevronLeft, ChevronRight, ExternalLink, Quote } from 'lucide-react'
-import { REVIEWS_DATA } from '@/data/content'
-import { GOOGLE_MAPS_REVIEW_URL } from '@/lib/utils'
+import React, { useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 export const ReviewsSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
 
-  // Real review image assets from workspace
-  const reviewImages = [
-    { name: 'Lumena', file: '/depoimento Lumena.png', title: 'Depoimento Lumena' },
-    { name: 'Gustavo Rodrigues', file: '/Depoimento Gustavo Rodrigues.png', title: 'Depoimento Gustavo Rodrigues' },
-    { name: 'Ana Beatriz Leal', file: '/depoimento Ana Beatriz leal.png', title: 'Depoimento Ana Beatriz' },
-    { name: 'Breno', file: '/depoimento Breno.png', title: 'Depoimento Breno' },
-    { name: 'Eduarda', file: '/depoimento eduarda.png', title: 'Depoimento Eduarda' },
-    { name: 'Priscila Dias', file: '/depoimento priscila Dias.png', title: 'Depoimento Priscila Dias' },
-    { name: 'Roberta de Carvalho', file: '/Depoimento Roberta de Carvalho.png', title: 'Depoimento Roberta' },
+  const reviews = [
+    {
+      id: 1,
+      name: 'Ana Paula',
+      avatar: '/client-assets/avatar-ana.jpg',
+      rating: 5,
+      text: '“Ambiente maravilhoso, profissionais atenciosos e uma experiência incrível. Super recomendo!”'
+    },
+    {
+      id: 2,
+      name: 'Mariana',
+      avatar: '/client-assets/avatar-mariana.jpg',
+      rating: 5,
+      text: '“Massagem perfeita! Saí renovada, com mais energia e bem-estar. Já quero voltar!”'
+    },
+    {
+      id: 3,
+      name: 'Carlos',
+      avatar: '/client-assets/avatar-carlos.jpg',
+      rating: 5,
+      text: '“Atendimento excelente, ambiente acolhedor e profissionais muito qualificados. Recomendo!”'
+    }
   ]
 
-  const nextReview = () => {
-    setCurrentIndex((prev) => (prev + 1) % REVIEWS_DATA.length)
-  }
-
   const prevReview = () => {
-    setCurrentIndex((prev) => (prev - 1 + REVIEWS_DATA.length) % REVIEWS_DATA.length)
+    setCurrentIndex((prev) => (prev === 0 ? reviews.length - 1 : prev - 1))
   }
 
-  // Automatic scrolling for main review card (every 4.5 seconds)
-  useEffect(() => {
-    if (isPaused) return
-    const interval = setInterval(() => {
-      nextReview()
-    }, 4500)
-    return () => clearInterval(interval)
-  }, [isPaused, currentIndex])
+  const nextReview = () => {
+    setCurrentIndex((prev) => (prev === reviews.length - 1 ? 0 : prev + 1))
+  }
 
   return (
-    <section id="avaliacoes" className="py-24 bg-cream-100 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="avaliacoes" className="py-12 sm:py-16 bg-[#FAF8F5] relative overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
-        {/* Giant Score Header */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16">
-          
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gold/30 shadow-xs mb-4">
-            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span className="text-xs uppercase tracking-widest font-semibold text-plum">
-              Avaliações 100% Verificadas no Google
-            </span>
+        {/* Banner Superior com a Toalha, Flor e Frase do Mockup */}
+        <div className="relative rounded-3xl overflow-hidden shadow-sm border border-[#EFE8DD] mb-8 bg-white">
+          <img 
+            src="/client-assets/experiencia-real-banner.jpg" 
+            alt="Quem vive a experiência, recomenda - Fisiomassagem Studio" 
+            className="w-full h-auto object-cover select-none"
+          />
+        </div>
+
+        {/* Selo Central Google 5.0 */}
+        <div className="bg-white rounded-2xl shadow-sm border border-[#EFE8DD] p-4 sm:p-6 mb-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-center sm:text-left">
+          <div className="flex items-center gap-3">
+            <svg viewBox="0 0 24 24" className="w-10 h-10 shrink-0">
+              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+              <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+            </svg>
+            <span className="font-bold text-[#4A1D6A] text-2xl tracking-tight">Google</span>
           </div>
 
-          <div className="flex items-center gap-3 mb-2">
-            <span className="font-serif text-6xl sm:text-7xl font-bold text-plum tracking-tight">
-              5,0
-            </span>
-            <div className="flex flex-col items-start">
-              <div className="flex text-gold">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-6 h-6 sm:w-7 sm:h-7 fill-gold text-gold" />
-                ))}
+          <div className="hidden sm:block w-px h-10 bg-[#E6DEC8]" />
+
+          <div className="flex flex-col items-center sm:items-start">
+            <div className="flex items-center gap-2">
+              <span className="font-extrabold text-[#4A1D6A] text-2xl">5,0</span>
+              <div className="flex text-[#F59E0B] text-lg">
+                {'★★★★★'}
               </div>
-              <span className="text-xs sm:text-sm font-bold text-charcoal tracking-wide mt-1">
-                Classificação Máxima no Google Meu Negócio
-              </span>
             </div>
-          </div>
-
-          <h2 className="font-serif text-2xl sm:text-3xl font-normal text-plum mb-3">
-            O Que Nossos Clientes Dizem em <span className="italic font-serif">Icaraí</span>
-          </h2>
-
-          <p className="text-charcoal-muted text-sm sm:text-base max-w-xl">
-            Mais de <strong>600 avaliações autênticas</strong> que atestam nosso compromisso com o silêncio, a técnica e a renovação de corpo e mente.
-          </p>
-
-          {/* Official Google Button */}
-          <div className="mt-6">
-            <a
-              href={GOOGLE_MAPS_REVIEW_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-cream-50 text-plum border border-gold/40 shadow-soft hover:shadow text-xs sm:text-sm font-semibold transition-all group"
-            >
-              <span>Ver todas as 600+ avaliações reais no Google</span>
-              <ExternalLink className="w-4 h-4 text-gold group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
+            <span className="text-xs font-semibold text-stone-500 tracking-wider uppercase">
+              Mais de 600 avaliações reais
+            </span>
           </div>
         </div>
 
-        {/* Carousel / Slider of Testimonials with Auto-scroll and pause on hover */}
-        <div 
-          className="max-w-4xl mx-auto relative mb-16"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-gold/30 shadow-luxury relative transition-all duration-500">
-            <Quote className="w-12 h-12 text-gold/20 absolute top-6 right-8 pointer-events-none" />
-
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-1 text-gold">
-                {[...Array(REVIEWS_DATA[currentIndex].rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-gold text-gold" />
-                ))}
-                <span className="text-xs font-semibold text-charcoal-light ml-2">
-                  {REVIEWS_DATA[currentIndex].date}
-                </span>
-              </div>
-
-              {/* Progress Indicator Dots */}
-              <div className="flex items-center gap-1.5">
-                {REVIEWS_DATA.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentIndex(idx)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      currentIndex === idx ? 'w-6 bg-gold' : 'w-2 bg-cream-300 hover:bg-gold/50'
-                    }`}
-                    aria-label={`Ir para depoimento ${idx + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <p className="font-serif italic text-lg sm:text-2xl text-charcoal leading-relaxed mb-6 min-h-[90px] sm:min-h-[80px]">
-              "{REVIEWS_DATA[currentIndex].comment}"
-            </p>
-
-            <div className="flex items-center justify-between pt-6 border-t border-cream-200">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-cream-200 border border-gold/30 flex items-center justify-center font-serif text-lg font-bold text-plum">
-                  {REVIEWS_DATA[currentIndex].author.charAt(0)}
-                </div>
+        {/* 3 Review Cards (Carousel no mobile / 3 cards lado a lado no desktop) */}
+        <div className="relative">
+          {/* Desktop: 3 Cards Grid */}
+          <div className="hidden md:grid grid-cols-3 gap-5">
+            {reviews.map((rev) => (
+              <div 
+                key={rev.id}
+                className="bg-white rounded-2xl p-5 shadow-sm border border-[#EFE8DD] flex flex-col justify-between"
+              >
                 <div>
-                  <h4 className="font-serif text-base font-bold text-plum">
-                    {REVIEWS_DATA[currentIndex].author}
-                  </h4>
-                  <p className="text-xs text-charcoal-light">
-                    Experiência: <strong className="text-gold-dark">{REVIEWS_DATA[currentIndex].service}</strong>
+                  <div className="flex items-center gap-3 mb-3">
+                    <img 
+                      src={rev.avatar} 
+                      alt={rev.name} 
+                      className="w-12 h-12 rounded-full object-cover border border-[#EFE8DD]"
+                    />
+                    <div>
+                      <div className="font-bold text-[#4A1D6A] text-sm">{rev.name}</div>
+                      <div className="flex text-[#F59E0B] text-xs">
+                        {'★★★★★'}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
+                    {rev.text}
                   </p>
                 </div>
               </div>
-
-              {/* Navigation Arrows */}
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={prevReview}
-                  aria-label="Depoimento Anterior"
-                  className="w-10 h-10 rounded-full border border-gold/30 bg-cream-50 hover:bg-cream-200 text-plum flex items-center justify-center transition-colors"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={nextReview}
-                  aria-label="Próximo Depoimento"
-                  className="w-10 h-10 rounded-full border border-gold/30 bg-cream-50 hover:bg-cream-200 text-plum flex items-center justify-center transition-colors"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Real Review Screenshots - Infinite Auto-Scrolling Marquee Strip */}
-        <div>
-          <div className="text-center mb-6">
-            <span className="text-xs uppercase tracking-widest font-semibold text-charcoal-light">
-              Capturas de Depoimentos Espontâneos no Google
-            </span>
+            ))}
           </div>
 
-          {/* Marquee Carousel Container with subtle left/right gradient masks */}
-          <div className="relative overflow-hidden w-full py-2">
-            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-cream-100 to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-cream-100 to-transparent z-10 pointer-events-none"></div>
+          {/* Mobile: Interactive Carousel with Arrows */}
+          <div className="md:hidden relative flex items-center justify-center">
+            <button
+              onClick={prevReview}
+              className="absolute -left-2 z-10 w-9 h-9 rounded-full bg-white shadow-md border border-[#EAE3D6] flex items-center justify-center text-[#4A1D6A] hover:bg-[#FAF6FC]"
+              aria-label="Avaliação anterior"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
 
-            <div className="flex gap-4 animate-marquee hover:[animation-play-state:paused] w-max">
-              {/* Duplicate array for seamless infinite marquee loop */}
-              {[...reviewImages, ...reviewImages].map((img, i) => (
-                <div
-                  key={i}
-                  className="w-72 shrink-0 rounded-2xl overflow-hidden bg-white p-3 border border-gold/25 shadow-soft hover:shadow-md transition-all group"
-                >
-                  <img
-                    src={img.file}
-                    alt={img.title}
-                    className="w-full h-auto rounded-xl object-contain max-h-48 group-hover:scale-[1.02] transition-transform"
+            <div className="w-full px-6">
+              <div className="bg-white rounded-2xl p-5 shadow-sm border border-[#EFE8DD] transition-all">
+                <div className="flex items-center gap-3 mb-3">
+                  <img 
+                    src={reviews[currentIndex].avatar} 
+                    alt={reviews[currentIndex].name} 
+                    className="w-12 h-12 rounded-full object-cover border border-[#EFE8DD]"
                   />
-                  <p className="text-[11px] text-center text-charcoal-light font-medium mt-2">
-                    ✓ Avaliação verificada • {img.name}
-                  </p>
+                  <div>
+                    <div className="font-bold text-[#4A1D6A] text-sm">{reviews[currentIndex].name}</div>
+                    <div className="flex text-[#F59E0B] text-xs">
+                      {'★★★★★'}
+                    </div>
+                  </div>
                 </div>
-              ))}
+                <p className="text-xs sm:text-sm text-stone-600 leading-relaxed font-normal">
+                  {reviews[currentIndex].text}
+                </p>
+              </div>
             </div>
+
+            <button
+              onClick={nextReview}
+              className="absolute -right-2 z-10 w-9 h-9 rounded-full bg-white shadow-md border border-[#EAE3D6] flex items-center justify-center text-[#4A1D6A] hover:bg-[#FAF6FC]"
+              aria-label="Próxima avaliação"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Mobile Pagination Dots */}
+          <div className="flex md:hidden justify-center items-center gap-1.5 mt-4">
+            {reviews.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`h-2 rounded-full transition-all ${
+                  currentIndex === idx ? 'w-5 bg-[#4A1D6A]' : 'w-2 bg-[#D9CFDF]'
+                }`}
+                aria-label={`Ir para avaliação ${idx + 1}`}
+              />
+            ))}
           </div>
         </div>
 
