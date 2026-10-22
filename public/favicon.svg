@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Background Circle Radial Gradient -->
+    <radialGradient id="bgGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#4A1E5C"/>
+      <stop offset="60%" stop-color="#2D1138"/>
+      <stop offset="100%" stop-color="#190721"/>
+    </radialGradient>
+
+    <!-- Metallic Gold Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCE59F"/>
+      <stop offset="35%" stop-color="#C5A059"/>
+      <stop offset="70%" stop-color="#9C7838"/>
+      <stop offset="100%" stop-color="#E5C77A"/>
+    </linearGradient>
+
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5B2371"/>
+      <stop offset="100%" stop-color="#340E44"/>
+    </linearGradient>
+
+    <!-- Subtle Drop Shadow for Contrast in light/dark browser tabs -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Luxury Circular Badge with Gold Trim -->
+  <circle cx="64" cy="64" r="61" fill="url(#bgGrad)" filter="url(#shadow)" stroke="url(#goldGrad)" stroke-width="4.5"/>
+  <circle cx="64" cy="64" r="54" fill="none" stroke="url(#goldGrad)" stroke-width="1" stroke-dasharray="2.5 2.5" opacity="0.6"/>
+
+  <!-- Yin-Yang Harmony Symbol (Center Emblem of Fisiomassagem) -->
+  <g transform="translate(64, 64)">
+    <!-- Base Yin Yang Circle -->
+    <circle cx="0" cy="0" r="38" fill="#FFFFFF"/>
+    
+    <!-- Dark / Purple Half (Yin) -->
+    <!-- Semi circle right side + top bump - bottom bump -->
+    <path d="M 0 -38 A 38 38 0 0 1 0 38 A 19 19 0 0 1 0 0 A 19 19 0 0 0 0 -38 Z" fill="url(#purpleGrad)"/>
+
+    <!-- Small contrasting dots -->
+    <!-- White dot in dark half (top) -->
+    <circle cx="0" cy="-19" r="6" fill="#FFFFFF"/>
+
+    <!-- Purple dot in light half (bottom) -->
+    <circle cx="0" cy="19" r="6" fill="url(#purpleGrad)"/>
+    
+    <!-- Thin Golden Ring around Yin Yang -->
+    <circle cx="0" cy="0" r="38" fill="none" stroke="url(#goldGrad)" stroke-width="2.5"/>
+  </g>
+
+  <!-- Subtle 4-point sparkle on top right for Spa luxury touch -->
+  <path d="M 96 22 Q 96 29 103 29 Q 96 29 96 36 Q 96 29 89 29 Q 96 29 96 22 Z" fill="url(#goldGrad)"/>
+  <circle cx="96" cy="29" r="1.5" fill="#FFF"/>
+</svg>
